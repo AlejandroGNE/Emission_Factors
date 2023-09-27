@@ -6,7 +6,7 @@ This model was built to carry out the research in:
 
 [Elenes, A. G., Williams, E., Hittinger, E., & Goteti, N. S. (2022). How Well Do Emission Factors Approximate Emission Changes from Electricity System Models?. Environmental Science & Technology, 56(20), 14701-14712.](https://doi.org/10.1021/acs.est.2c02344)
 
-This model was built upon previous work by [Naga Srujana Goteti](https://www.proquest.com/docview/2313404648?pq-origsite=gscholar&fromopenview=true), and adapted by Alejandro Elenes for this project. This model is a portion of the original, with minimal-effort adaptations, so some portions of the model may seem unnecessary -feel free to purge your version as needed.
+This model was built upon previous work by [Naga Srujana Goteti](https://www.proquest.com/docview/2313404648?pq-origsite=gscholar&fromopenview=true), and adapted by Alejandro Elenes for this project. This model is a simpler version of the original, with minimal-effort adaptations to fulfill a different purpose, so some portions of the model may seem unnecessary -feel free to purge your version as needed.
 
 This model allows the user to test different emission factors using emissions input data from a power system model, and comparing the actual changes in emissions caused by the electricity demand changes of introducing new technologies in the grid.
 
@@ -23,6 +23,6 @@ The model equations and more detail on data and model assumptions can be found i
 
 ## Running the base case (Elenes et al. (2022))
 1. [Clone this repository to your machine](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-2. Open MATLAB; confirm the add-ons are installed: `distrib_computing_toolbox` and `statistics_toolbox`
+2. Start MATLAB; confirm these add-ons are installed: `distrib_computing_toolbox` and `statistics_toolbox`
 3. Navigate to the project directory `Emission_Factors`
-4. Run `MEFs.m` script.
+4. Run `MEFs.m` script
