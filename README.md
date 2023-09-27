@@ -19,7 +19,7 @@ At this point, this project has all the data used in Elenes et al. (2022):
 The model has not yet been adjusted to be "easily" replicated for other case studies, but that would not be a major endeavor. If you are interested, feel free to clone this repository, try it yourself, and contact me with questions.
 
 ## Documentation
-The model equations and more detail on data and model assumptions can be found in the [Supporting Information](https://pubs.acs.org/doi/suppl/10.1021/acs.est.2c02344/suppl_file/es2c02344_si_001.pdf) of the research article, whereas the equations for the emission factors methods tested can be found in the main manuscript (request at an2013@rit.edu).
+The model equations and more detail on data and model assumptions can be found in the [Supporting Information](https://pubs.acs.org/doi/suppl/10.1021/acs.est.2c02344/suppl_file/es2c02344_si_001.pdf) of the research article, whereas the equations for the emission factors methods tested can be found in the [main manuscript](https://doi.org/10.1021/acs.est.2c02344) (inquiries to an2013@rit.edu).
 
 ## Running the base case (Elenes et al. (2022))
 Open MATLAB and Run `MEFs.m` script.
