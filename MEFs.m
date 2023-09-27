@@ -1,11 +1,15 @@
 %% Comparing marginal emissions factors
-thisDir= pwd;
-Plotpath= strcat(pwd,'\PlotsMEF\');
+homeDir= pwd;
+Plotpath= strcat(homeDir,'\PlotsMEF\');
+cd model/
 saver= strcat('MEF_',date);
 %% Get MEFs for MISO & NYISO (v4)
 grids = 2;
 for region = grids:-1:1
-    [MEF_data{region},Dispatch_data{region},hourlyGHG0{region},powerplants{region}] = MEF_function(region);
+    [MEF_data{region},...
+        Dispatch_data{region},...
+        hourlyGHG0{region},...
+        powerplants{region}] = MEF_function(region);
 end
 %% Hourly MEF plots
 for region = 1:grids
@@ -18,7 +22,11 @@ parfor casestudy = 1:techs
     for region = 1:grids
         [Emissions{casestudy}{region},...
             Dispatch1{casestudy}{region},...
-            hourly_GHG1{casestudy}{region}] = GHG_casestudy(region,Case_Studies(casestudy,:),hourlyGHG0{region},MEF_data{region});
+            hourly_GHG1{casestudy}{region}] = GHG_casestudy(...
+            region,...
+            Case_Studies(casestudy,:),...
+            hourlyGHG0{region},...
+            MEF_data{region});
     end
 end
 save(saver,'Emissions','MEF_data')
@@ -26,7 +34,11 @@ save(saver,'Emissions','MEF_data')
 % Bar plots of approximations vs true emissions
 parfor casestudy = 1:techs
     for region = 1:grids
-[barplots{casestudy}{region}] = MEF_plots(casestudy,region,Emissions{casestudy}{region},Plotpath);
+[barplots{casestudy}{region}] = MEF_plots(...
+    casestudy,...
+    region,...
+    Emissions{casestudy}{region},...
+    Plotpath);
     end
 end
 %% Subplots (values)
@@ -35,7 +47,7 @@ for casestudy = 1:techs
     for region = 1:grids
         counter = runs + 1;
         Emissions_data = Emissions{casestudy}{region};
-        subplot(techs,grids,counter) %temporary; regions will be flipped; later remove the -1, when we drop Srujana's old MISO data and region=1 actually means MISO data
+        subplot(techs,grids,counter) 
         Approximations = Emissions_data(1:5,1:4);
         Actual_value = Emissions_data(6,1);
         b = bar(Approximations);
@@ -43,7 +55,8 @@ for casestudy = 1:techs
         c = plot(xlim,[Actual_value Actual_value],'--k','LineWidth',1.5);
         hold off
         ylabel('Change in emissions (tCO_2e)')
-        set(gca,'XTickLabel',{'Incremental','Costliest','Thermal','Demand','AEF'})
+        set(gca,'XTickLabel',...
+            {'Incremental','Costliest','Thermal','Demand','AEF'})
         set(gca,'FontSize',12)
         set(gcf,'Position',[100 100 550 500])
         if counter == 2
@@ -151,7 +164,7 @@ for casestudy = 1:techs
     for region = 1:grids
         counter = runs + 1;
         Emissions_data = Emissions{casestudy}{region};
-        subplot(techs,grids,counter) %temporary; regions will be flipped; later remove the -1, when we drop Srujana's old MISO data and region=1 actually means MISO data
+        subplot(techs,grids,counter) 
         Approximations = Emissions_data(1:5,1:4);
         Actual_value = Emissions_data(6,1);
         Percent_error = ((Approximations - Actual_value)/Actual_value)*100;
